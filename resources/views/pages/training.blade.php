@@ -54,18 +54,32 @@ $wordsArr = json_encode($words , JSON_UNESCAPED_UNICODE);
         typedWordSn.innerHTML = randomWord.toUpperCase();
         var typingUserArea = document.getElementById('typing-user-area');
         typingUserArea.maxLength = randomWordLength;
-        // var finishCountSet = document.getElementById('finish-count-set');
+        var finishCountSet = document.getElementById('finish-count-set');
         // var finishCountSetVal = finishCountSet.value;
 
         var toFinishCount = document.getElementById('to-finish-count'); 
-        var toFinishCountNum = 5;
+        
+        if(localStorage.getItem('count_end_local')){
+            var toFinishCountNum = localStorage.getItem('count_end_local');
+        }else{
+            var toFinishCountNum = 5;
+        }
+
+
         toFinishCount.innerHTML = toFinishCountNum;
         var typingValArr = [];
 
-        // finishCountSet.addEventListener('input' , function(){
-        //     finishCountSetVal = this.value;
-        //     toFinishCount.innerHTML = toFinishCountNum;
-        // });
+        finishCountSet.addEventListener('change' , function(){
+            if (localStorage) {
+              var finishCountSetVal = this.value;
+              toFinishCountNum = finishCountSetVal;
+              localStorage.setItem('count_end_local', finishCountSetVal);
+              toFinishCount.innerHTML = toFinishCountNum;
+            } else {
+              alert('Twoja przeglądarka nie wspiera technologii wymaganej do wykonania tej akcji. Zmień przeglądarkę na najnowszą wersje Chrome');
+            }
+            
+        });
 
 
         function letsType(e) {
@@ -109,6 +123,22 @@ $wordsArr = json_encode($words , JSON_UNESCAPED_UNICODE);
 
         typingUserArea.addEventListener('keyup', letsType);
 
+        // Add selected attribute
+        function setSelectedValue() {
+          var selectedValue = localStorage.getItem('count_end_local');
+          if (selectedValue != null) {
+            var selectElement = document.getElementById('finish-count-set');
+            var options = selectElement.options;
+            for (var i = 0; i < options.length; i++) {
+              if (options[i].value == selectedValue) {
+                options[i].selected = true;
+                break;
+              }
+            }
+          }
+        }
+
+        setSelectedValue();
 
 
 
