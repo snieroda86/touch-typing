@@ -23,6 +23,8 @@
 
 
         <!-- Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
         <script src="{{ asset('js/app.js') }}" defer></script>
         <!-- Favicon-->
        
@@ -58,6 +60,7 @@
                                 @endif
                             @else
                                 <li class="nav-item dropdown">
+                                    <a href="{{ route('user.logout-user') }}">Wyloguj się</a>
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }}
                                     </a>

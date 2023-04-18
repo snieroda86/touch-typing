@@ -11,7 +11,12 @@
 <section class="bg-light py-5">
     <div class="container px-5">
         <div class="row gx-5 justify-content-center">
-            <div class="col-xxl-8">
+            <div id="limit-access-info" class="pt-5 pb-5 col-xxl-8">
+                <div class="alert alert-warning text-center" role="alert">
+                  Wyczerpałeś limit wpisanych słów. Aby kontynuowac musisz <a href="{{ url('/login') }}"><u>się zalogować</u></a>.
+                </div>
+            </div>
+            <div class="col-xxl-8" id="app-training-area">
                 <div class="text-center my-5" id="training-input-area">
                     <h5 class="text-center">Twoje słowo:</h5>
                     <h2 id="typed-word-sn" class="pt-4 text-center"></h2>
@@ -29,7 +34,7 @@
                             <option value="15">15</option>
                             <option value="20">20</option>
                         </select>
-                        <h3>To jest na devie</h3>
+                    
                     </div>
                 </div>
             </div>
@@ -146,4 +151,40 @@ $wordsArr = json_encode($words , JSON_UNESCAPED_UNICODE);
     });
 
 </script>
+
+@guest
+    <script type="text/javascript">
+        
+        $(document).ready(function() {
+            var reloadCounter = localStorage.getItem("reloadCounter") || 0; 
+            reloadCounter++;
+            $.ajax({
+                type: 'GET',
+                url: '{{ route("user.check-access") }}?reloadCounter='+reloadCounter,
+                success: function(data) {
+                    
+                    if(data.access == false){
+                        $('#app-training-area').css("display" , "none");
+                        $('#limit-access-info').css("display" , "block");
+                    }else{
+                        $('#app-training-area').css("display" , "block");
+                        $('#limit-access-info').css("display" , "none");
+
+                    }
+
+                    localStorage.setItem("reloadCounter", reloadCounter);
+
+                },
+                error: function() {
+                    // kod obsługi błędu
+                }
+            });
+        
+        });
+
+
+    </script>
+@endguest
+
+
 @endsection

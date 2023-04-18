@@ -29,7 +29,11 @@ Route::get('/import', [App\Http\Controllers\PagesController::class, 'importView'
 
 Route::post('/import/process', [App\Http\Controllers\PagesController::class, 'importProcess'])->name('page.import.process');
 
+// Check if user logged in to manage access
+Route::get('/zalogowany/dostep', [App\Http\Controllers\UserController::class, 'checkAccess'])->name('user.check-access');
 
+
+Route::get('/wyloguj', [App\Http\Controllers\UserController::class, 'logoutUser'])->name('user.logout-user');
 
 Route::get('/admin/kokpit', [AdminController::class, 'kokpit'])->name('admin.kokpit');
 
