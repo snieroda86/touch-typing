@@ -29,7 +29,7 @@
                             <option value="15">15</option>
                             <option value="20">20</option>
                         </select>
-                        <h3>To jest na devie</h3>
+    
                     </div>
                 </div>
             </div>
