@@ -18,7 +18,7 @@
                     <div class="text-center pt-3" id="typing-area-input-wrap">
                         <input type="text" id="typing-user-area" autofocus>
                     </div>
-                    <p class="pt-3"><span>Pozostało:</span><span id="to-finish-count" class="pl-2"></span></p>
+                    <p class="pt-3"><span>Pozostało do końca:</span><span id="to-finish-count" class="pl-2"></span></p>
                     <div class="text-center pt-3 m-auto" style="max-width: 300px;">
                         <p>Ustaw liczbe powtórzeń:</p>
                         <select id="finish-count-set" class="form-control">
