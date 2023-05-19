@@ -17,4 +17,4 @@ jobs:
         server:   s14.cyber-folks.pl
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
-        server-dir: /public_html/web4you.biz.pl/20/
+        server-dir: /public_html/web4you.biz.pl/touch_typing/touch-typing
